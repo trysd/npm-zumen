@@ -6,10 +6,10 @@ A development tool that can create a group of files at once based on the design 
 
   1. Create a drawing file (zumen.json) directly under the project.
   2. Create a template file (**.*.ejs) in ./zumen/*
-  3. run command 'npx zumen'
+  3. run command 'npx zumen@latest'
 
   If the file to be created exists, an error will occur, but the -f option will forcibly overwrite it.
-    <br>'<strong>npx zumen -f</strong>'
+    <br>'<strong>npx zumen@latest -f</strong>'
 
 # in detail
 
