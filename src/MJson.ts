@@ -2,13 +2,12 @@ import { ReservedWord } from './NReservedWord';
 // import fs = require('fs-extra');
 import * as fs from 'fs-extra';
 import { Tpl } from './MTemplate';
-// import YAML = require('yaml');
 import * as YAML from 'yaml';
 
 /** Converted type */
 export interface ConvertedJson {
   props: unknown,
-  tpl: string, // template
+  tpl: string,
   name: string,
   path: string[],
   pathStr: string
@@ -74,6 +73,7 @@ export class MJson {
 
     // Convert to an array representing what should be created where
     const convertedJson: ConvertedJson[] = this.jsonToArray(json, [], []);
+    console.log(convertedJson)
 
     // Resolve annotation
     this.readAnnotation(convertedJson);
@@ -164,8 +164,19 @@ export class MJson {
    * @returns 
    */
   public readJson(): unknown {
-    const str = fs.readFileSync(MJson.JsonURL, 'utf8').toString();
-    const obj = MJson.JsonURL.match(/\.yml$|\.yaml$/)
+  
+    let fileName = "";
+    ['.json', '.yaml', 'yml'].forEach(tail => {
+      if (fs.pathExistsSync("./" + MJson.JsonURL + tail)) {
+        fileName = "./" + MJson.JsonURL + tail;
+      }
+    });
+    if (fileName === "") {
+      throw new Error("Can't find the zumen map file.");
+    }
+
+    const str = fs.readFileSync(fileName, 'utf8').toString();
+    const obj = !fileName.match(/\.json$/)
       ? YAML.parse(str)
       : JSON.parse(str);
     this.removeJsonCommentOut(obj);

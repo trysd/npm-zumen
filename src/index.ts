@@ -6,8 +6,8 @@ export interface ArgvOptions {
 }
 
 export default class Main {
-  private static tplDir = 'x.map';
-  private static mapFile = 'x.map.yaml';
+  private static tplDir = 'zumen';
+  private static mapFile = 'zumen';
   private json = new MJson(Main.mapFile);
   private template = MTemplate.getInstance();
   private baseTpl: Tpl = {};

@@ -1,0 +1,15 @@
+{
+  "src/": {
+    "components/": {
+      "component=DialogOpen": {
+        "comment": "Dialog open button."
+      },
+      "component=DialogClose": {
+        "comment": "Dialog close button."
+      },
+      "index=": {
+        "brings": "@component"
+      }
+    }
+  }
+}
