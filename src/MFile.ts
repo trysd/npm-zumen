@@ -1,4 +1,3 @@
-// import fs = require('fs-extra');
 import * as fs from 'fs-extra';
 
 export class MFile {

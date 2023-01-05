@@ -1,12 +1,9 @@
-// import path = require('path');
-import * as path from 'path';
-// import fs = require('fs-extra');
-import * as fs from 'fs-extra';
 import { MFile } from './MFile';
 import { ConvertedJson } from './MJson';
-// import ejs = require('ejs');
+import { ArgvOptions } from './Core';
+import * as path from 'path';
+import * as fs from 'fs-extra';
 import * as ejs from 'ejs';
-import { ArgvOptions } from '.';
 
 export interface Tpl {
   [keys: string]: {
@@ -70,7 +67,7 @@ export class MTemplate {
   public getAllTemplate(dir: string): Tpl {
     const dirArr = MFile.readDir(dir);
 
-    // 同名のfile名があればエラー
+    // Error if there is a file name with the same name.
     const exists: { [keys: string]: boolean } = {};
     dirArr.forEach(f => {
       const fn = f.split("=");

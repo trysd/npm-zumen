@@ -51,7 +51,6 @@ const <%= name %> = () => {
     <div>
       I'm <%= name %>
     </div>
-    </>
   );
 }
 ```
@@ -69,7 +68,6 @@ const dialogComponent = () => {
     <div>
       I'm dialogComponent
     </div>
-    </>
   );
 }
 ```
@@ -118,6 +116,13 @@ export * from './DialogClose';
 ### Items that are automatically and implicitly granted
 You can use the file name "name" and the file path string "path" in the template.
 
-# memo
-npm run build && node ./dist/index.js -f
+### preview of final structure
+"-p" option preview the final system-interpreted structure.
 
+# sample file link
+
+### template sample
+https://github.com/trysd/zumen/tree/master/zumen
+
+### zumen.json sample
+https://github.com/trysd/zumen/blob/master/zumen.json

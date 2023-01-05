@@ -1,7 +1,7 @@
 import { ReservedWord } from './NReservedWord';
-// import fs = require('fs-extra');
-import * as fs from 'fs-extra';
 import { Tpl } from './MTemplate';
+import { ArgvOptions } from './Core';
+import * as fs from 'fs-extra';
 import * as YAML from 'yaml';
 
 /** Converted type */
@@ -62,7 +62,7 @@ export class MJson {
   /**
    * JSON parsing main
    */
-  public convertJson(tpl: Tpl): ConvertedJson[] {
+  public convertJson(tpl: Tpl, options: ArgvOptions): ConvertedJson[] {
 
     // read and parse
     const json = this.readJson();
@@ -73,7 +73,9 @@ export class MJson {
 
     // Convert to an array representing what should be created where
     const convertedJson: ConvertedJson[] = this.jsonToArray(json, [], []);
-    console.log(convertedJson)
+    if (options.preview) {
+      console.log(convertedJson);
+    }
 
     // Resolve annotation
     this.readAnnotation(convertedJson);
