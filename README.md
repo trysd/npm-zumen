@@ -130,11 +130,3 @@ You can use the file name "name" and the file path string "path" in the template
 
 ### preview of final structure
 "-p" option preview the final system-interpreted structure.
-
-# sample file link
-
-### template sample
-https://github.com/trysd/zumen/tree/master/zumen
-
-### zumen.json sample
-https://github.com/trysd/zumen/blob/master/zumen.json
