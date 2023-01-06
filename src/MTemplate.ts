@@ -85,7 +85,7 @@ export class MTemplate {
     } catch {
       throw new Error(
         `no such file or directory, scandir 'zumen/'`
-        + `\n\n  $ npx zumen@latest init\n\n to create a sample first.`
+        + `\n\n  $ npx zumen@latest init\n\nto create a sample first.`
       );
     }
 

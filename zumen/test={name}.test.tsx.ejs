@@ -1,9 +1,0 @@
-import { render, screen } from '@testing-library/react';
-<%_ for (var i = 0; i < brings.length; i++) { _%>
-import <%= brings[i].name %> from '<%= brings[i].path %><%= brings[i].name %>';
-<%_ } _%>
-
-test('Buttons is drawn', () => {
-  // const { baseElement } = render(<<%= name %> />);
-  // expect(screen.getByText('here Buttons')).toBeInTheDocument();
-});
