@@ -36,22 +36,24 @@ export class MJson {
         if (!tplKeys.includes(keySplitted[0])) {
           if (!key.match(/=/)) {
             throw new Error(
-              `path: ${path.join("") + key}`
-              + `\nAre you sure it's "${key + '/'}"?`
-              + `\nSpecifying a template "${keySplitted[0]}" that does not exist.`
+              `Specifying a template "${keySplitted[0]}" that does not exist.`
+              + `\npath: ${path.join("") + key}`
+              + `\n\nAre you sure it's "${key + '/'}" or "${key}=someName" ?`
+              
             )
           }
           throw new Error(
-            `path: ${path.join("") + key}`
-            + `\nSpecifying a template "${keySplitted[0]}" that does not exist.`
+            `Specifying a template "${keySplitted[0]}" that does not exist.`
+            + `\npath: ${path.join("") + key}`
+            
           )
         }
 
         Object.keys(json[key]).forEach(f => {
           if (ReservedWord.includes(f)) {
             throw new Error(
-              `object: ${path.join("") + key}`
-              + `\nThe reserved word "${f}" cannot be used as an item name.`
+              `The reserved word "${f}" cannot be used as an item name.`
+              + `\nobject: ${path.join("") + key}` 
             );
           }
         });
@@ -175,7 +177,7 @@ export class MJson {
     if (fileName === "") {
       throw new Error(
         `Can't find the zumen map file.`
-        + `\n"npx zumen@latest init" to create a sample first.`
+        + `\n\n  $ npx zumen@latest init\n\nto create a sample first.\n\n`
       );
     }
 

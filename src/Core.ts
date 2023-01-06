@@ -16,8 +16,20 @@ export default class Core {
   private baseTpl: Tpl = {};
   private convertedJson: ConvertedJson[] = [];
 
-  /** main */
   public main(): void {
+    try {
+      this.exec();
+    } catch(e) {
+      console.error(
+        "\x1b[31m" + (e + "").split(/\n\n\n/)[0]
+        .replace(/^Error: /, '')
+        .replace(/\$ (npx .+)\n/, "\x1b[34m$ $1\n\x1b[31m") 
+        + "\x1b[0m"
+      );
+    }
+  }
+
+  public exec(): void {
 
     const options = this.readArgv();
 

@@ -85,7 +85,7 @@ export class MTemplate {
     } catch {
       throw new Error(
         `no such file or directory, scandir 'zumen/'`
-        + `\nPlease "npx zumen@latest init" to create a sample first.`
+        + `\n\n  $ npx zumen@latest init\n\n to create a sample first.`
       );
     }
 
@@ -93,7 +93,7 @@ export class MTemplate {
     dirArr.forEach(f => {
       if (!f.match(/=/)) {
         throw new Error(
-          `Template name error: "${f}". The template file name must include "=".`
+          `"${f}". The template file name must include "=".`
           + `\nexample: "${f}={name}.ts.ejs"`  
         );
       }
