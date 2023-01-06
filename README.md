@@ -11,7 +11,7 @@ Next, customize the design set and run basic commands.
 ```js
   npx zumen@latest
 ```
-Add the -o option to overwrite the output file.
+Add the -o option to overwrite the output file.  
 Be careful, as the finished file that you manually customized will be reverted.
 ```js
   npx zumen@latest -o

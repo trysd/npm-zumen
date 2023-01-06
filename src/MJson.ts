@@ -28,7 +28,6 @@ export class MJson {
   public testJson(json: unknown, arr: ConvertedJson[], path: string[], tplKeys: string[]): void {
     Object.keys(json).forEach(key => {
       if (key.match(/\/$/)) {
-        // 階層
         const _path = [...path, key];
         this.testJson(json[key], arr, _path, tplKeys)
       } else {
