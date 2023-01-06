@@ -31,31 +31,45 @@ export class MTemplate {
    */
   public writeFile(jsonArr: ConvertedJson[], tpl: Tpl, options: ArgvOptions): void {
 
-    if (!options.force) {
-      jsonArr.forEach(m => {
-        const fileName = tpl[m.tpl].fileName.replace(/{name}/, m.name).replace(/\.ejs$/, '');
-        fs.pathExists(m.pathStr + fileName, (err, exists) => {
-          if (exists) {
-            throw new Error(
-              'File to write already exists.'
-              + `\ntarget: ${tpl[m.tpl].fileName}`
-              + `\nexists: ${m.pathStr + fileName}`
-              + `\nhint: -f option will force overwriting`);
-          }
-        })
-      });
-    }
+    // if (!options.force) {
+    //   jsonArr.forEach(m => {
+    //     const fileName = tpl[m.tpl].fileName.replace(/{name}/, m.name).replace(/\.ejs$/, '');
+    //     if (fs.pathExistsSync(m.pathStr + fileName)) {
+    //       throw new Error(
+    //         'File to write already exists.'
+    //         + `\ntarget: ${tpl[m.tpl].fileName}`
+    //         + `\nexists: ${m.pathStr + fileName}`
+    //         + `\nhint: -f option will force overwriting`);
+    //     }
+    //   });
+    // }
 
-    jsonArr.forEach(m => {
+    let createdFilesCnt = 0;
+    let overwriteCnt = 0;
+    let skipCnt = 0;
+    for (let i = 0; i < jsonArr.length; i++) {
+      const m = jsonArr[i];
+
       const fileName = tpl[m.tpl].fileName.replace(/{name}/, m.name).replace(/\.ejs$/, '');
       const compiledBody = ejs.render(tpl[m.tpl].body, m.props).replace(/\n\n+/g, '\n\n');
-      fs.mkdirs(m.pathStr, function (err) {
-        if (err) {
-          throw new Error("Failed to create directory")
+      if (fs.pathExistsSync(m.pathStr + fileName)) {
+        if (!options.overwrite) {
+          skipCnt++;
+          continue;
         }
-      });
+        overwriteCnt++;
+      } else {
+        createdFilesCnt++;
+      }
+      fs.mkdirsSync(m.pathStr);
       fs.outputFileSync(m.pathStr + fileName, compiledBody);
-    });
+      console.log(`created: ${m.pathStr + fileName}`);
+    }
+    console.log(
+      (createdFilesCnt ? `${createdFilesCnt} files created. ` : '')
+      + (overwriteCnt ? `${overwriteCnt} files overwrite. ` : '')
+      + (skipCnt ? `${skipCnt} files skipped because they exist.` : '')
+    );
 
   }
 
@@ -65,11 +79,24 @@ export class MTemplate {
    * @returns 
    */
   public getAllTemplate(dir: string): Tpl {
-    const dirArr = MFile.readDir(dir);
+    let dirArr;
+    try {
+      dirArr = MFile.readDir(dir);
+    } catch {
+      throw new Error(
+        `no such file or directory, scandir 'zumen/'`
+        + `\nPlease "npx zumen@latest init" to create a sample first.`
+      );
+    }
 
-    // Error if there is a file name with the same name.
     const exists: { [keys: string]: boolean } = {};
     dirArr.forEach(f => {
+      if (!f.match(/=/)) {
+        throw new Error(
+          `Template name error: "${f}". The template file name must include "=".`
+          + `\nexample: "${f}={name}.ts.ejs"`  
+        );
+      }
       const fn = f.split("=");
       if (exists[fn[1] + "\t"]) {
         throw new Error(`Duplicate file name of template in ${fn[0]}`);

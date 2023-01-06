@@ -1,9 +1,11 @@
 import { MJson, ConvertedJson } from './MJson';
 import { MTemplate, Tpl } from './MTemplate';
+import { MUserInit } from './MUserInit';
 
 export interface ArgvOptions {
-  force: boolean,
-  preview: boolean
+  overwrite: boolean,
+  preview: boolean,
+  init: boolean
 }
 
 export default class Core {
@@ -19,6 +21,12 @@ export default class Core {
 
     const options = this.readArgv();
 
+    // user init
+    if (options.init) {
+      new MUserInit(Core.mapFile, Core.tplDir);
+      return;
+    }
+
     // read template
     this.baseTpl = this.template.getAllTemplate(Core.tplDir);
 
@@ -26,7 +34,9 @@ export default class Core {
     this.convertedJson = this.json.convertJson(this.baseTpl, options);
 
     // write file
-    this.template.writeFile(this.convertedJson, this.baseTpl, options);
+    if (!options.preview) {
+      this.template.writeFile(this.convertedJson, this.baseTpl, options);
+    }
   }
 
   /**
@@ -36,12 +46,14 @@ export default class Core {
   private readArgv(): ArgvOptions {
     const argv = process.argv;
     const options: ArgvOptions = {
-      force: false,
-      preview: false
+      overwrite: false,
+      preview: false,
+      init: false
     }
     if (argv.length > 2) {
-      options.force = argv.includes("-f") ? true : false;
+      options.overwrite = argv.includes("-o") ? true : false;
       options.preview = argv.includes("-p") ? true : false;
+      options.init = argv.includes("init") ? true : false;
     }
     return options
   }

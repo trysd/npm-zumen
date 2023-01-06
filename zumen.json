@@ -1,6 +1,11 @@
 {
   "src/": {
     "components/": {
+      "sample/sample=hello": {
+        "comment": "this is hello sample",
+        "array": [100, 200, 300],
+        "userFreeProperty": "abcdefg"
+      },
       "Elements/": {
         "Buttons/": {
           "component=DialogOpen": {
@@ -19,25 +24,6 @@
             "test=Buttons": {
               "brings": "../@component"
             }
-          }
-        }
-      },
-      "Feature/": {
-        "SignUp/": {
-          "component=SignUp": {
-            "comment": "user registration.",
-            "route": [
-              "components/Feature/SignUpConfirm"
-            ]
-          },
-          "component=SignUpConfirm": {
-            "comment": "user registration confirm.",
-            "route": [
-              "components/Feature/SignUpResult"
-            ]
-          },
-          "component=SignUpResult": {
-            "comment": "user registration result."
           }
         }
       }

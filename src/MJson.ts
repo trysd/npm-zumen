@@ -74,7 +74,7 @@ export class MJson {
     // Convert to an array representing what should be created where
     const convertedJson: ConvertedJson[] = this.jsonToArray(json, [], []);
     if (options.preview) {
-      console.log(convertedJson);
+      console.dir(convertedJson, {depth: null});
     }
 
     // Resolve annotation
@@ -141,7 +141,6 @@ export class MJson {
   public jsonToArray(json: unknown, arr: ConvertedJson[], path: string[]): ConvertedJson[] {
     Object.keys(json).forEach(key => {
       if (key.match(/\/$/)) {
-        // console.log(path, key)
         const _path = [...path, key];
         this.jsonToArray(json[key], arr, _path)
       } else {
@@ -174,7 +173,10 @@ export class MJson {
       }
     });
     if (fileName === "") {
-      throw new Error("Can't find the zumen map file.");
+      throw new Error(
+        `Can't find the zumen map file.`
+        + `\n"npx zumen@latest init" to create a sample first.`
+      );
     }
 
     const str = fs.readFileSync(fileName, 'utf8').toString();

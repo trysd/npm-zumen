@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-/** <%= comment %> */
-const <%= name %> = () => {
+/** Dialog open button. */
+const DialogOpen = () => {
   return (
     <>
       <div css={main}>
-        <%= name %>
+        DialogOpen
       </div>
     </>
   );
@@ -14,4 +14,4 @@ const <%= name %> = () => {
 const main = css`
   margin: 0.2em;
 `;
-export default <%= name %>
+export default DialogOpen

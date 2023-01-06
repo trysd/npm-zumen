@@ -1,26 +1,36 @@
 # zumen
-
 A development tool that can create a group of files at once based on the design described in json (or yaml)
 
 # usage
+
+Install the design set with the init command.
+```js
+  npx zumen@latest init
+```
+Next, customize the design set and run basic commands.
+```js
+  npx zumen@latest
+```
+Add the -o option to overwrite the output file.
+Be careful, as the finished file that you manually customized will be reverted.
+```js
+  npx zumen@latest -o
+```
+
+# Detailed usage
 
   1. Create a drawing file (zumen.json) directly under the project.
   2. Create a template file (**.*.ejs) in ./zumen/*
   3. run command 'npx zumen@latest'
 
-  If the file to be created exists, an error will occur, but the -f option will forcibly overwrite it.
-    <br>'<strong>npx zumen@latest -f</strong>'
-
-# in detail
-
-## 1. Drawing file file
+## 1. Drawing file
 
 Place the drawing file (zumen.json or zumen.yml, zumen.yaml) that describes the files to be created directly under the project.
 
 ### Drawing file contents
 
 Describe the file structure in the drawing file. For folders, add / at the end of the item name, and for files, the item name will be "template name"="file name". See the example for details.
-(The right hand side of equals is a string that will later be used in templates and to replace {name} in filenames.)
+(The right hand side of "=" is a string that will later be used in templates and to replace {name} in filenames.)
 
 #### zumen.json(or zumen.yaml, zumen.yml)
 
@@ -35,7 +45,9 @@ Describe the file structure in the drawing file. For folders, add / at the end o
   }
 }
 ```
-- Items under the item name with equals are optional, and you can set your favorite item name and value and deploy it as ejs in the template.(In the above example, "comment" is that)
+- Item names and values in the file are basically arbitrary and can be expanded as ejs in the template. (However, the name and path are added implicitly, so even if you specify them, they will be overwritten by the system.)
+- For other detailed explanations, please refer to "Special function".
+- how to use ejs https://ejs.co/#docs
 
 ## 2. How to create template file
 
