@@ -73,7 +73,9 @@ class MTemplate {
             else {
                 createdFilesCnt++;
             }
-            fs.mkdirsSync(m.pathStr);
+            if (m.pathStr.length) {
+                fs.mkdirsSync(m.pathStr);
+            }
             fs.outputFileSync(m.pathStr + fileName, compiledBody);
             console.log(`created: ${m.pathStr + fileName}`);
         }
