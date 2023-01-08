@@ -100,10 +100,10 @@ export class MTemplate {
         );
       }
       const fn = f.split("=");
-      if (exists[fn[1] + "\t"]) {
+      if (exists[fn[0] + "\t"]) {
         throw new Error(`Duplicate file name of template in ${fn[0]}`);
       }
-      exists[fn[1] + "\t"] = true;
+      exists[fn[0] + "\t"] = true;
     });
 
     // read files
