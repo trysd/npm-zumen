@@ -1,5 +1,6 @@
 # zumen
 A development tool that can create a group of files at once based on the design described in json (or yaml)
+[![CICD](https://github.com/trysd/npm-zumen/actions/workflows/release.yml/badge.svg)](https://github.com/trysd/npm-zumen/actions/workflows/release.yml)
 
 # usage
 
