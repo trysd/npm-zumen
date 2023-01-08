@@ -2,3 +2,5 @@ node_modules
 coverage
 .env
 .DS_Store
+zumen.json
+zumen
