@@ -169,6 +169,6 @@ test('Buttons is drawn', () => {
       console.log(`created: ./${tplDirName}/test={name}.test.tsx.ejs`);
     }
   
-  console.log('\x1b[36m' + 'Now run "npx zumen@latest" again to create the file!' + '\x1b[0m');
+  console.log('\x1b[32m' + 'Now run \n\n  \x1b[36m$ npx zumen@latest\n\n\x1b[32magain to create the file!' + '\x1b[0m');
   }
 }

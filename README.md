@@ -1,4 +1,6 @@
 # zumen
+
+Zumen is a command line tool.  
 A development tool that can create a group of files at once based on the design described in json (or yaml)
 [![CICD](https://github.com/trysd/npm-zumen/actions/workflows/release.yml/badge.svg)](https://github.com/trysd/npm-zumen/actions/workflows/release.yml)
 
@@ -16,6 +18,11 @@ Add the -o option to overwrite the output file.
 Be careful, as the finished file that you manually customized will be reverted.
 ```js
   npx zumen@latest -o
+```
+preview of final structure
+"-p" option preview the final system-interpreted structure.
+```js
+  npx zumen@latest -p
 ```
 
 # Detailed usage
@@ -128,6 +135,3 @@ export * from './DialogClose';
 
 ### Items that are automatically and implicitly granted
 You can use the file name "name" and the file path string "path" in the template.
-
-### preview of final structure
-"-p" option preview the final system-interpreted structure.
