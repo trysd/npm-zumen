@@ -126,7 +126,7 @@ export * from './<%= brings[i].name %>';
 <%_ } _%>
 ```
 
-####　File completed with the above set
+####　 File completed with the above set
 ##### ./src/components/index.ts
 ```js
 export * from './DialogOpen';
