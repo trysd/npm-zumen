@@ -1,4 +1,4 @@
-# zumen
+# [Zumen](https://www.npmjs.com/package/zumen)
 
 Zumen is a command line tool.  
 A development tool that can create a group of files at once based on the design described in json (or yaml)
